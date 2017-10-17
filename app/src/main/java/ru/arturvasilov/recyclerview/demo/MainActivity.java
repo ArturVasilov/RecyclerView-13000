@@ -5,9 +5,12 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SnapHelper;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import ru.arturvasilov.recyclerview.demo.snap.FixedSnapHelper;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,6 +23,9 @@ public class MainActivity extends AppCompatActivity {
         DemoAdapter adapter = new DemoAdapter(createDemoItems());
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
+
+        SnapHelper snapHelper = new FixedSnapHelper();
+        snapHelper.attachToRecyclerView(recyclerView);
     }
 
     @NonNull

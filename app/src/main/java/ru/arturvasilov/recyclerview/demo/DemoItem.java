@@ -5,7 +5,7 @@ import android.support.annotation.NonNull;
 /**
  * @author Artur Vasilov
  */
-class DemoItem {
+public class DemoItem {
 
     @NonNull
     private final String label;

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="SwipeMenu">
+        <attr name="swipe_menu_duration" format="integer"/>
+        <attr name="swipe_to_dismiss_enabled" format="boolean"/>
+        <attr name="swipe_to_dismiss_percent" format="float"/>
+        <attr name="swipe_menu_enabled" format="boolean"/>
+        <attr name="swipe_menu_open_percent" format="float"/>
+    </declare-styleable>
+</resources>

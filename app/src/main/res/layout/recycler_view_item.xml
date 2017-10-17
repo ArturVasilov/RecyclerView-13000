@@ -1,20 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             android:layout_width="match_parent"
-             android:layout_height="@dimen/item_height"
-             android:layout_marginLeft="@dimen/item_horizontal_margin"
-             android:layout_marginRight="@dimen/item_horizontal_margin"
-             android:layout_marginTop="@dimen/item_vertical_margin"
-             android:background="@drawable/border_background"
-             android:orientation="vertical">
+<ru.arturvasilov.recyclerview.demo.swipemenu.SwipeHorizontalMenuLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/swipe_view_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:swipe_menu_duration="250"
+    app:swipe_menu_enabled="false"
+    app:swipe_to_dismiss_enabled="true"
+    app:swipe_to_dismiss_percent="0.4">
 
-    <TextView
-        android:id="@+id/item_label"
+    <View
+        android:id="@+id/swipe_view_menu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:fontFamily="sans-serif"
-        android:gravity="center"
-        android:textSize="@dimen/item_text_size"/>
+        android:layout_gravity="center_vertical"/>
 
-</FrameLayout>
+    <FrameLayout
+        android:id="@+id/swipe_view_content"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/item_height"
+        android:layout_marginLeft="@dimen/item_horizontal_margin"
+        android:layout_marginRight="@dimen/item_horizontal_margin"
+        android:layout_marginTop="@dimen/item_vertical_margin"
+        android:background="@drawable/border_background"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/item_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="sans-serif"
+            android:gravity="center"
+            android:textSize="@dimen/item_text_size"/>
+
+    </FrameLayout>
+
+</ru.arturvasilov.recyclerview.demo.swipemenu.SwipeHorizontalMenuLayout>

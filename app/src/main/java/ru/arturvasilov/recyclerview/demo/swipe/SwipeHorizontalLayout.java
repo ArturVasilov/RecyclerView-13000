@@ -1,4 +1,4 @@
-package ru.arturvasilov.recyclerview.demo.swipemenu;
+package ru.arturvasilov.recyclerview.demo.swipe;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -16,20 +16,20 @@ import ru.arturvasilov.recyclerview.demo.R;
 /**
  * @author Artur Vasilov
  */
-public class SwipeHorizontalMenuLayout extends SwipeMenuLayout {
+public class SwipeHorizontalLayout extends SwipeLayout {
 
     @Nullable
     private ValueAnimator translationAnimator;
 
-    public SwipeHorizontalMenuLayout(Context context) {
+    public SwipeHorizontalLayout(Context context) {
         super(context);
     }
 
-    public SwipeHorizontalMenuLayout(Context context, AttributeSet attrs) {
+    public SwipeHorizontalLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public SwipeHorizontalMenuLayout(Context context, AttributeSet attrs, int defStyle) {
+    public SwipeHorizontalLayout(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
     }
 
@@ -295,6 +295,7 @@ public class SwipeHorizontalMenuLayout extends SwipeMenuLayout {
         }
 
         translationAnimator = ValueAnimator.ofFloat(from, to);
+        //noinspection ConstantConditions
         translationAnimator.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {

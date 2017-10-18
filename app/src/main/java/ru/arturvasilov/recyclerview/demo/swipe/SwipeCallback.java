@@ -1,4 +1,4 @@
-package ru.arturvasilov.recyclerview.demo.swipemenu;
+package ru.arturvasilov.recyclerview.demo.swipe;
 
 /**
  * @author Artur Vasilov

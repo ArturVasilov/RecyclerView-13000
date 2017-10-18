@@ -2,13 +2,16 @@ package ru.arturvasilov.recyclerview.demo;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SnapHelper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import ru.arturvasilov.recyclerview.demo.swipe.OnDismissListener;
+import ru.arturvasilov.recyclerview.demo.swipe.SwipeDismissHolder;
 
 /**
  * @author Artur Vasilov
@@ -18,15 +21,20 @@ class DemoAdapter extends RecyclerView.Adapter<DemoAdapter.DemoHolder> {
     @NonNull
     private final List<DemoItem> items;
 
-    DemoAdapter(@NonNull List<DemoItem> items) {
-        this.items = items;
+    @NonNull
+    private final OnDismissListener onDismissListener;
+
+    DemoAdapter(@NonNull List<DemoItem> items, @NonNull OnDismissListener onDismissListener) {
+        this.items = new ArrayList<>(items);
+        this.onDismissListener = onDismissListener;
     }
 
     @NonNull
     @Override
     public DemoHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        return new DemoHolder(inflater.inflate(R.layout.recycler_view_item, parent, false));
+        View itemView = inflater.inflate(R.layout.recycler_view_item, parent, false);
+        return new DemoHolder(itemView, onDismissListener);
     }
 
     @Override
@@ -39,17 +47,25 @@ class DemoAdapter extends RecyclerView.Adapter<DemoAdapter.DemoHolder> {
         return items.size();
     }
 
-    class DemoHolder extends RecyclerView.ViewHolder {
+    public void removeItem(@NonNull DemoItem demoItem) {
+        int position = items.indexOf(demoItem);
+        items.remove(position);
+        notifyItemRemoved(position);
+    }
+
+    class DemoHolder extends SwipeDismissHolder {
 
         @NonNull
         private final TextView labelTextView;
 
-        DemoHolder(@NonNull View itemView) {
-            super(itemView);
+        DemoHolder(@NonNull View itemView, @NonNull OnDismissListener onDismissListener) {
+            super(itemView, onDismissListener);
             labelTextView = itemView.findViewById(R.id.item_label);
         }
 
-        void bind(@NonNull DemoItem demoItem) {
+        @Override
+        public void bind(@NonNull DemoItem demoItem) {
+            super.bind(demoItem);
             labelTextView.setText(demoItem.getLabel());
         }
     }

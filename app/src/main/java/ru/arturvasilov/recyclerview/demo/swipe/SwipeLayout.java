@@ -1,4 +1,4 @@
-package ru.arturvasilov.recyclerview.demo.swipemenu;
+package ru.arturvasilov.recyclerview.demo.swipe;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -18,7 +18,7 @@ import ru.arturvasilov.recyclerview.demo.R;
  *         This is seriously modified version of SwipeMenu library from
  *         https://github.com/TUBB/SwipeMenu
  */
-public abstract class SwipeMenuLayout extends FrameLayout {
+public abstract class SwipeLayout extends FrameLayout {
 
     private static final int DEFAULT_ANIMATION_DURATION = 250;
     private static final float DEFAULT_SWIPE_TO_DISMISS_PERCENT = 0.5f;
@@ -48,15 +48,15 @@ public abstract class SwipeMenuLayout extends FrameLayout {
     @Nullable
     protected SwipeCallback swipeCallback;
 
-    public SwipeMenuLayout(Context context) {
+    public SwipeLayout(Context context) {
         this(context, null);
     }
 
-    public SwipeMenuLayout(Context context, AttributeSet attrs) {
+    public SwipeLayout(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public SwipeMenuLayout(Context context, AttributeSet attrs, int defStyle) {
+    public SwipeLayout(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
 
         if (!isInEditMode()) {

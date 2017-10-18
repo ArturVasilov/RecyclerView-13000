@@ -12,6 +12,7 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.List;
 
+import ru.arturvasilov.recyclerview.demo.animation.ItemAnimator;
 import ru.arturvasilov.recyclerview.demo.snap.FixedSnapHelper;
 import ru.arturvasilov.recyclerview.demo.swipe.OnDismissListener;
 import ru.arturvasilov.recyclerview.demo.swipe.SwipeDismissAnimator;
@@ -30,7 +31,7 @@ public class MainActivity extends AppCompatActivity implements OnDismissListener
         mDemoAdapter = new DemoAdapter(createDemoItems(), this);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(mDemoAdapter);
-        recyclerView.setItemAnimator(new SwipeDismissAnimator());
+        recyclerView.setItemAnimator(new ItemAnimator());
 
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new SwipeDismissTouchCallback(ItemTouchHelper.RIGHT) {
             @Override

@@ -1,16 +1,12 @@
-/*
- * This file is a part of the Yandex Search for Android project.
- *
- * (C) Copyright 2017 Yandex, LLC. All rights reserved.
- *
- * Author: Artur Vasilov <avasilov@yandex-team.ru>
- */
 package ru.arturvasilov.recyclerview.demo.swipe;
 
 import android.graphics.Canvas;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 
+/**
+ * @author ArturVasilov
+ */
 public abstract class SwipeDismissTouchCallback extends ItemTouchHelper.SimpleCallback {
 
     public SwipeDismissTouchCallback(int swipeDirs) {

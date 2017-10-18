@@ -1,10 +1,3 @@
-/*
- * This file is a part of the Yandex Search for Android project.
- *
- * (C) Copyright 2017 Yandex, LLC. All rights reserved.
- *
- * Author: Artur Vasilov <avasilov@yandex-team.ru>
- */
 package ru.arturvasilov.recyclerview.demo.swipe;
 
 import android.support.annotation.CallSuper;
@@ -15,6 +8,9 @@ import android.view.View;
 import ru.arturvasilov.recyclerview.demo.DemoItem;
 import ru.arturvasilov.recyclerview.demo.R;
 
+/**
+ * @author ArturVasilov
+ */
 public class SwipeDismissHolder extends RecyclerView.ViewHolder {
 
     public SwipeDismissHolder(@NonNull View itemView, @NonNull OnDismissListener onDismissListener) {

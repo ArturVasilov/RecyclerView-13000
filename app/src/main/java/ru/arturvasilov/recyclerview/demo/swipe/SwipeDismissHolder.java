@@ -16,7 +16,6 @@ public class SwipeDismissHolder extends RecyclerView.ViewHolder {
     public SwipeDismissHolder(@NonNull View itemView, @NonNull OnDismissListener onDismissListener) {
         super(itemView);
         SwipeLayout swipeLayout = itemView.findViewById(R.id.swipe_view_layout);
-        //swipeLayout.setSwipeEnabled(false);
         swipeLayout.setSwipeCallback(new SwipeCallback() {
             @Override
             public void onSwipeChanged(int translationX) {

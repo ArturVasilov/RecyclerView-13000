@@ -15,9 +15,10 @@
     <ImageView
         android:id="@+id/swipe_view_menu"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/item_height"
         android:layout_gravity="center_vertical|right"
-        android:src="@mipmap/ic_launcher"
+        android:scaleType="centerCrop"
+        android:src="@drawable/mem"
         tools:ignore="ContentDescription,RtlHardcoded"/>
 
     <FrameLayout

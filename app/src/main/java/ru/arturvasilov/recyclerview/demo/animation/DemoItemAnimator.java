@@ -11,7 +11,7 @@ import ru.arturvasilov.recyclerview.demo.R;
 /**
  * @author ArturVasilov
  */
-public class ItemAnimator extends BaseItemAnimator {
+public class DemoItemAnimator extends BaseItemAnimator {
 
     @Override
     protected void animateRemoveHolder(@NonNull RecyclerView.ViewHolder holder) {

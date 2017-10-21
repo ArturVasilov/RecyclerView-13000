@@ -24,9 +24,26 @@ class DemoAdapter extends RecyclerView.Adapter<DemoAdapter.DemoHolder> {
     @NonNull
     private final OnDismissListener onDismissListener;
 
-    DemoAdapter(@NonNull List<DemoItem> items, @NonNull OnDismissListener onDismissListener) {
+    @NonNull
+    private final OnItemClickListener onItemClickListener;
+
+    @NonNull
+    private final View.OnClickListener internalClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(@NonNull View view) {
+            DemoItem demoItem = (DemoItem) view.getTag(R.id.demo_item_key);
+            if (demoItem != null) {
+                int position = items.indexOf(demoItem);
+                onItemClickListener.onItemClick(demoItem, position);
+            }
+        }
+    };
+
+    DemoAdapter(@NonNull List<DemoItem> items, @NonNull OnDismissListener onDismissListener,
+                @NonNull OnItemClickListener onItemClickListener) {
         this.items = new ArrayList<>(items);
         this.onDismissListener = onDismissListener;
+        this.onItemClickListener = onItemClickListener;
     }
 
     @NonNull
@@ -47,10 +64,22 @@ class DemoAdapter extends RecyclerView.Adapter<DemoAdapter.DemoHolder> {
         return items.size();
     }
 
+    public void addItem(@NonNull DemoItem demoItem, int position) {
+        if (position < 0 || position > items.size()) {
+            throw new IllegalArgumentException("Position must be in list bounds");
+        }
+        items.add(position, demoItem);
+        notifyItemInserted(position);
+    }
+
     public void removeItem(@NonNull DemoItem demoItem) {
         int position = items.indexOf(demoItem);
         items.remove(position);
         notifyItemRemoved(position);
+    }
+
+    interface OnItemClickListener {
+        void onItemClick(@NonNull DemoItem demoItem, int position);
     }
 
     class DemoHolder extends SwipeDismissHolder {
@@ -66,6 +95,7 @@ class DemoAdapter extends RecyclerView.Adapter<DemoAdapter.DemoHolder> {
         @Override
         public void bind(@NonNull DemoItem demoItem) {
             super.bind(demoItem);
+            itemView.setOnClickListener(internalClickListener);
             labelTextView.setText(demoItem.getLabel());
         }
     }

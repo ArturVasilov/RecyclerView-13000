@@ -1,10 +1,10 @@
 package ru.arturvasilov.recyclerview.demo.animation;
 
-import android.support.annotation.NonNull;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.view.animation.LinearInterpolator;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.DecelerateInterpolator;
 
 import ru.arturvasilov.recyclerview.demo.R;
 
@@ -14,23 +14,42 @@ import ru.arturvasilov.recyclerview.demo.R;
 public class DemoItemAnimator extends BaseItemAnimator {
 
     @Override
-    protected void animateRemoveHolder(@NonNull RecyclerView.ViewHolder holder) {
-        //holder.itemView.setTranslationX(0);
-        View view = holder.itemView.findViewById(R.id.swipe_view_content);
-        view.setTranslationX(0);
+    protected void preAnimateRemoveImpl(RecyclerView.ViewHolder holder) {
+        View swipeView = holder.itemView.findViewById(R.id.swipe_view_content);
+        if (swipeView != null) {
+            swipeView.setTranslationX(0);
+        }
+        holder.itemView.setScaleX(1);
+        holder.itemView.setScaleY(1);
+    }
+
+    @Override
+    protected void animateRemoveImpl(RecyclerView.ViewHolder holder) {
         ViewCompat.animate(holder.itemView)
-                .rotation(270)
+                .scaleX(0.5f)
+                .scaleY(0.5f)
                 .setDuration(getRemoveDuration())
-                .setInterpolator(new LinearInterpolator())
-                .setListener(new DefaultAddVpaListener(holder))
+                .setInterpolator(new DecelerateInterpolator())
+                .setListener(new DefaultRemoveVpaListener(holder))
                 .setStartDelay(getRemoveDelay(holder))
                 .start();
     }
 
-
+    @Override
+    protected void preAnimateAddImpl(RecyclerView.ViewHolder holder) {
+        holder.itemView.setScaleX(0.5f);
+        holder.itemView.setScaleY(0.5f);
+    }
 
     @Override
-    public long getRemoveDuration() {
-        return 3000;
+    protected void animateAddImpl(RecyclerView.ViewHolder holder) {
+        ViewCompat.animate(holder.itemView)
+                .scaleX(1)
+                .scaleY(1)
+                .setDuration(getAddDuration())
+                .setInterpolator(new AccelerateInterpolator())
+                .setListener(new DefaultAddVpaListener(holder))
+                .setStartDelay(getAddDelay(holder))
+                .start();
     }
 }

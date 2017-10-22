@@ -64,6 +64,11 @@ class DemoAdapter extends RecyclerView.Adapter<DemoAdapter.DemoHolder> {
         return items.size();
     }
 
+    @NonNull
+    public List<DemoItem> getItems() {
+        return items;
+    }
+
     public void addItem(@NonNull DemoItem demoItem, int position) {
         if (position < 0 || position > items.size()) {
             throw new IllegalArgumentException("Position must be in list bounds");

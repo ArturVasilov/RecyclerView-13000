@@ -1,8 +1,10 @@
 package ru.arturvasilov.recyclerview.demo;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.util.DiffUtil;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ru.arturvasilov.recyclerview.demo.animation.DemoItemAnimator;
+import ru.arturvasilov.recyclerview.demo.diff.DiffUtilCallback;
 import ru.arturvasilov.recyclerview.demo.snap.FixedSnapHelper;
 import ru.arturvasilov.recyclerview.demo.swipe.OnDismissListener;
 import ru.arturvasilov.recyclerview.demo.swipe.SwipeDismissAnimator;
@@ -47,6 +50,7 @@ public class MainActivity extends AppCompatActivity implements OnDismissListener
 
         RecyclerView.ItemAnimator itemAnimator = new DemoItemAnimator();
         recyclerView.setItemAnimator(itemAnimator);
+
     }
 
     @Override
@@ -58,6 +62,19 @@ public class MainActivity extends AppCompatActivity implements OnDismissListener
     public void onItemClick(@NonNull DemoItem demoItem, int position) {
         int number = new SecureRandom().nextInt(900) + 100;
         demoAdapter.addItem(new DemoItem(String.valueOf(number)), position);
+    }
+
+    private void tryDiffUtil() {
+        new Handler().postDelayed(() -> {
+            List<DemoItem> newItems = new ArrayList<>();
+            for (int i = 0; i < 30; i += 2) {
+                newItems.add(new DemoItem(String.valueOf(i + 1)));
+            }
+
+            DiffUtil.Callback callback = new DiffUtilCallback(demoAdapter.getItems(), newItems);
+            DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(callback, false);
+            diffResult.dispatchUpdatesTo(demoAdapter);
+        }, 3000);
     }
 
     @NonNull

@@ -32,4 +32,6 @@ dependencies {
     compile "com.android.support:appcompat-v7:$supportVersion"
     compile "com.android.support:recyclerview-v7:$supportVersion"
     compile "com.android.support:design:$supportVersion"
+
+    compile "android.arch.paging:runtime:1.0.0-alpha3"
 }

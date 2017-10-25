@@ -50,7 +50,6 @@ public class MainActivity extends AppCompatActivity implements OnDismissListener
 
         RecyclerView.ItemAnimator itemAnimator = new DemoItemAnimator();
         recyclerView.setItemAnimator(itemAnimator);
-
     }
 
     @Override

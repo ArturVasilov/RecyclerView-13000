@@ -7,42 +7,59 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="@dimen/item_vertical_margin"
+    android:orientation="vertical"
     app:swipe_menu_duration="250"
     app:swipe_menu_enabled="true"
     app:swipe_to_dismiss_enabled="true"
     app:swipe_to_dismiss_percent="0.4">
 
-    <ImageView
-        android:id="@+id/swipe_view_menu"
+    <TextView
+        android:id="@+id/time_text"
         android:layout_width="wrap_content"
-        android:layout_height="@dimen/item_height"
-        android:layout_gravity="center_vertical|right"
-        android:scaleType="centerCrop"
-        android:src="@drawable/mem"
-        tools:ignore="ContentDescription,RtlHardcoded"/>
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:text="Yesterday"
+        android:textSize="20sp"/>
 
     <FrameLayout
-        android:id="@+id/swipe_view_content"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/item_height"
-        android:background="@android:color/white"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp">
+
+        <ImageView
+            android:id="@+id/swipe_view_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/item_height"
+            android:layout_gravity="center_vertical|right"
+            android:scaleType="centerCrop"
+            android:src="@drawable/mem"
+            tools:ignore="ContentDescription,RtlHardcoded"/>
 
         <FrameLayout
+            android:id="@+id/swipe_view_content"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="@dimen/item_horizontal_margin"
-            android:layout_marginRight="@dimen/item_horizontal_margin"
-            android:background="@drawable/border_background">
+            android:layout_height="@dimen/item_height"
+            android:background="@android:color/white"
+            android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/item_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:fontFamily="sans-serif"
-                android:gravity="center"
-                android:textSize="@dimen/item_text_size"/>
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/item_horizontal_margin"
+                android:layout_marginRight="@dimen/item_horizontal_margin"
+                android:background="@drawable/border_background">
+
+                <TextView
+                    android:id="@+id/item_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="sans-serif"
+                    android:gravity="center"
+                    android:textSize="@dimen/item_text_size"/>
+
+            </FrameLayout>
 
         </FrameLayout>
 

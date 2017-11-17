@@ -6,7 +6,9 @@ import android.support.annotation.MainThread;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
+import java.util.ArrayDeque;
 import java.util.LinkedList;
+import java.util.Queue;
 
 class IdleTaskHandler {
 
@@ -14,7 +16,7 @@ class IdleTaskHandler {
     private final MessageQueue mMessageQueue = Looper.myQueue();
 
     @NonNull
-    private final LinkedList<IdleTask> mTaskQueue = new LinkedList<>();
+    private final Queue<Runnable> mTaskQueue = new ArrayDeque<>();
 
     @NonNull
     private final NextIdleHandler mHandler = new NextIdleHandler();
@@ -24,16 +26,16 @@ class IdleTaskHandler {
     }
 
     @MainThread
-    public void register(@NonNull IdleTask task) {
+    public void register(@NonNull Runnable task) {
         if (mTaskQueue.size() == 0) {
             mMessageQueue.addIdleHandler(mHandler);
         }
 
-        mTaskQueue.offer(task);
+        mTaskQueue.add(task);
     }
 
     @MainThread
-    public void unregister(@NonNull IdleTask task) {
+    public void unregister(@NonNull Runnable task) {
         mTaskQueue.remove(task);
 
         if (mTaskQueue.size() == 0) {
@@ -42,8 +44,8 @@ class IdleTaskHandler {
     }
 
     @MainThread
-    protected void removeExecutedTask(@NonNull IdleTask idleTask) {
-        mTaskQueue.remove(idleTask);
+    protected void removeExecutedTask(@NonNull Runnable task) {
+        mTaskQueue.remove(task);
     }
 
     public class NextIdleHandler implements MessageQueue.IdleHandler {
@@ -56,12 +58,12 @@ class IdleTaskHandler {
         }
 
         private void pollAndExecuteIdleTask() {
-            IdleTask task = mTaskQueue.peek();
+            Runnable task = mTaskQueue.peek();
             if (task == null) {
                 return;
             }
             try {
-                task.runOnce();
+                task.run();
             } finally {
                 removeExecutedTask(task);
             }

@@ -92,9 +92,13 @@ class DemoAdapter extends RecyclerView.Adapter<DemoAdapter.DemoHolder> {
         @NonNull
         private final TextView labelTextView;
 
+        @NonNull
+        private final TextView timeTextView;
+
         DemoHolder(@NonNull View itemView, @NonNull OnDismissListener onDismissListener) {
             super(itemView, onDismissListener);
             labelTextView = itemView.findViewById(R.id.item_label);
+            timeTextView = itemView.findViewById(R.id.time_text);
         }
 
         @Override
@@ -102,6 +106,12 @@ class DemoAdapter extends RecyclerView.Adapter<DemoAdapter.DemoHolder> {
             super.bind(demoItem);
             itemView.setOnClickListener(internalClickListener);
             labelTextView.setText(demoItem.getLabel());
+            if (demoItem.getTimeLabel() != null) {
+                timeTextView.setText(demoItem.getTimeLabel());
+                timeTextView.setVisibility(View.VISIBLE);
+            } else {
+                timeTextView.setVisibility(View.GONE);
+            }
         }
     }
 }

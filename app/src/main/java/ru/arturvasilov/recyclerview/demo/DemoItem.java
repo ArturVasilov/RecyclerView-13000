@@ -10,13 +10,26 @@ public class DemoItem {
     @NonNull
     private final String label;
 
+    @NonNull
+    private final String timeLabel;
+
     DemoItem(@NonNull String label) {
+        this(label, null);
+    }
+
+    DemoItem(@NonNull String label, @NonNull String timeLabel) {
         this.label = label;
+        this.timeLabel = timeLabel;
     }
 
     @NonNull
     String getLabel() {
         return label;
+    }
+
+    @NonNull
+    public String getTimeLabel() {
+        return timeLabel;
     }
 
     @Override

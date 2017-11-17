@@ -80,7 +80,21 @@ public class MainActivity extends AppCompatActivity implements OnDismissListener
     private List<DemoItem> createDemoItems() {
         List<DemoItem> demoItems = new ArrayList<>();
         for (int i = 0; i < 15; i++) {
-            demoItems.add(new DemoItem(String.valueOf(i + 1)));
+            if (i == 1) {
+                demoItems.add(new DemoItem(String.valueOf(i + 1), "10:00 AM"));
+            } else if (i == 5) {
+                demoItems.add(new DemoItem(String.valueOf(i + 1), "Yesterday"));
+            } else if (i == 6) {
+                demoItems.add(new DemoItem(String.valueOf(i + 1), "Oct. 23"));
+            } else if (i == 8) {
+                demoItems.add(new DemoItem(String.valueOf(i + 1), "Oct. 21"));
+            } else if (i == 12) {
+                demoItems.add(new DemoItem(String.valueOf(i + 1), "Oct. 20"));
+            } else if (i == 14) {
+                demoItems.add(new DemoItem(String.valueOf(i + 1), "Oct. 16"));
+            } else {
+                demoItems.add(new DemoItem(String.valueOf(i + 1)));
+            }
         }
         return demoItems;
     }

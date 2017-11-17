@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <declare-styleable name="SwipeMenu">
+    <declare-styleable name="SwipeLayout">
         <attr name="swipe_menu_duration" format="integer"/>
         <attr name="swipe_to_dismiss_enabled" format="boolean"/>
         <attr name="swipe_to_dismiss_percent" format="float"/>

@@ -8,7 +8,7 @@ import android.view.MotionEvent;
 import android.view.VelocityTracker;
 import android.view.View;
 import android.view.ViewConfiguration;
-import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 
 import ru.arturvasilov.recyclerview.demo.R;
 
@@ -18,7 +18,7 @@ import ru.arturvasilov.recyclerview.demo.R;
  *         This is seriously modified version of SwipeMenu library from
  *         https://github.com/TUBB/SwipeMenu
  */
-public abstract class SwipeLayout extends FrameLayout {
+public abstract class SwipeLayout extends LinearLayout {
 
     private static final int DEFAULT_ANIMATION_DURATION = 250;
     private static final float DEFAULT_SWIPE_TO_DISMISS_PERCENT = 0.5f;
@@ -60,12 +60,12 @@ public abstract class SwipeLayout extends FrameLayout {
         super(context, attrs, defStyle);
 
         if (!isInEditMode()) {
-            TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.SwipeMenu, 0, defStyle);
-            translationDuration = array.getInteger(R.styleable.SwipeMenu_swipe_menu_duration, DEFAULT_ANIMATION_DURATION);
-            isSwipeToDeleteEnabled = array.getBoolean(R.styleable.SwipeMenu_swipe_to_dismiss_enabled, true);
-            swipeToDeletePercent = array.getFloat(R.styleable.SwipeMenu_swipe_to_dismiss_percent, DEFAULT_SWIPE_TO_DISMISS_PERCENT);
-            isSwipeMenuEnabled = array.getBoolean(R.styleable.SwipeMenu_swipe_menu_enabled, false);
-            swipeMenuOpenPercent = array.getFloat(R.styleable.SwipeMenu_swipe_menu_open_percent, DEFAULT_SWIPE_MENU_OPEN_PERCENT);
+            TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.SwipeLayout, 0, defStyle);
+            translationDuration = array.getInteger(R.styleable.SwipeLayout_swipe_menu_duration, DEFAULT_ANIMATION_DURATION);
+            isSwipeToDeleteEnabled = array.getBoolean(R.styleable.SwipeLayout_swipe_to_dismiss_enabled, true);
+            swipeToDeletePercent = array.getFloat(R.styleable.SwipeLayout_swipe_to_dismiss_percent, DEFAULT_SWIPE_TO_DISMISS_PERCENT);
+            isSwipeMenuEnabled = array.getBoolean(R.styleable.SwipeLayout_swipe_menu_enabled, false);
+            swipeMenuOpenPercent = array.getFloat(R.styleable.SwipeLayout_swipe_menu_open_percent, DEFAULT_SWIPE_MENU_OPEN_PERCENT);
             array.recycle();
         }
         init();
